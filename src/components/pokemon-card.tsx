@@ -1,12 +1,13 @@
 import PokemonImage from '@/components/pokemon-image'
 import PokemonStats from '@/components/pokemon-stats'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import * as React from 'react'
 
 interface PokemonCardProps {
   name: string
   url: string
+  number: number | string | undefined
   className?: string
 }
 
@@ -18,8 +19,9 @@ export default function PokemonCard(props: Readonly<PokemonCardProps>) {
         props.className
       )}
     >
-      <CardHeader className='bg-muted'>
+      <CardHeader className='flex flex-row items-center justify-between bg-muted'>
         <CardTitle className='text-center text-3xl capitalize'>{props.name}</CardTitle>
+        <PokemonNumber number={props?.number || 0} />
       </CardHeader>
 
       <CardContent className='h-fit'>
@@ -30,5 +32,15 @@ export default function PokemonCard(props: Readonly<PokemonCardProps>) {
         <PokemonStats />
       </CardFooter>
     </Card>
+  )
+}
+
+function PokemonNumber({ number }: { number: number | string }) {
+  const pokemonNumber = number.toString().padStart(3, '0')
+
+  return (
+    <CardDescription>
+      <span className='font-mono text-2xl tabular-nums'>#{pokemonNumber}</span>
+    </CardDescription>
   )
 }

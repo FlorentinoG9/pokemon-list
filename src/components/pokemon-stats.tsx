@@ -8,7 +8,9 @@ import { usePathname } from 'next/navigation'
 export default function PokemonStats() {
   const pathname = usePathname()
 
-  if (pathname.split('/')[1] === '') return null
+  const [, id] = pathname.split('/')
+
+  if (id === '') return null
 
   return (
     <Tabs defaultValue='stats' className='w-full'>

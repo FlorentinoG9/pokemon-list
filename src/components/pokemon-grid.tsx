@@ -22,7 +22,7 @@ export default function PokemonGrid() {
         return (
           <li key={pokemon.name}>
             <Link href={`/${pokemon.name}`} className='group'>
-              <PokemonCard name={pokemon.name} url={imageUrl} />
+              <PokemonCard name={pokemon.name} url={imageUrl} number={pokemonId}/>
             </Link>
           </li>
         )
