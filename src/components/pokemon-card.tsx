@@ -1,3 +1,4 @@
+import PokemonEvolutions from '@/components/pokemon-evolutions'
 import PokemonImage from '@/components/pokemon-image'
 import PokemonStats from '@/components/pokemon-stats'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
@@ -20,12 +21,13 @@ export default function PokemonCard(props: Readonly<PokemonCardProps>) {
       )}
     >
       <CardHeader className='flex flex-row items-center justify-between bg-muted'>
-        <CardTitle className='text-center text-3xl capitalize'>{props.name}</CardTitle>
+        <CardTitle className='text-center text-lg capitalize md:text-3xl'>{props.name}</CardTitle>
         <PokemonNumber number={props?.number || 0} />
       </CardHeader>
 
-      <CardContent className='h-fit'>
-        <PokemonImage name={props.name} url={props.url} />
+      <CardContent>
+        <PokemonImage name={props.name} url={props.url} className='mt-5' />
+        <PokemonEvolutions />
       </CardContent>
 
       <CardFooter>
@@ -40,7 +42,7 @@ function PokemonNumber({ number }: { number: number | string }) {
 
   return (
     <CardDescription>
-      <span className='font-mono text-2xl tabular-nums'>#{pokemonNumber}</span>
+      <span className='font-mono text-lg tabular-nums md:text-2xl'>#{pokemonNumber}</span>
     </CardDescription>
   )
 }
