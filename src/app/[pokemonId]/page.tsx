@@ -15,9 +15,17 @@ export default async function Pokemon({ params: { pokemonId } }: Readonly<Pokemo
     },
   })
 
+  await queryClient.prefetchQuery({
+    queryKey: ['pokemon-evolution', pokemonId],
+    queryFn: async () => {
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+      return res.json()
+    },
+  })
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <section className='flex size-full items-center justify-center gap-5'>
+      <section className='flex size-full flex-col items-center justify-center gap-5'>
         <PokemonDetails />
       </section>
     </HydrationBoundary>
