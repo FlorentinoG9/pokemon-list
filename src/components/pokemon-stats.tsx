@@ -1,5 +1,6 @@
 'use client'
 
+import { Progress } from '@/components/ui/progress'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import usePokemonId from '@/hooks/use-pokemon-id'
 import { usePathname } from 'next/navigation'
@@ -51,22 +52,46 @@ function Base() {
 function Stats() {
   const pokemon = usePokemonId()
 
-  const totalBaseStats = pokemon.data?.stats.reduce((acc, stat) => acc + stat.base_stat, 0)
-
   return (
     <TabsContent value='stats'>
       <ul className='rounded border'>
         {pokemon.data?.stats.map((stat) => (
-          <li key={stat.stat.name} className='flex justify-between p-2 odd:bg-slate-100'>
-            <span className='capitalize'>{stat.stat.name}</span>
-            <span>{stat.base_stat}</span>
+          <li key={stat.stat.name} className='flex justify-between p-2'>
+            <StatBar name={stat.stat.name} value={stat.base_stat} />
           </li>
         ))}
       </ul>
-      <p className='mt-3 flex items-center justify-between gap-2 rounded border p-2'>
-        Total: <strong className='rounded border px-2 py-1'>{totalBaseStats}</strong>
-      </p>
+
+      <TotalStat stats={pokemon.data?.stats.map((stat) => stat.base_stat)} />
     </TabsContent>
+  )
+}
+
+function TotalStat({ stats }: { stats: number[] | undefined }) {
+  if (!stats) return null
+
+  const totalBaseStats = stats.reduce((acc, stat) => acc + stat, 0)
+
+  return (
+    <div className='mt-2 flex items-center justify-between gap-2 rounded border p-2'>
+      Total: <strong className='rounded border px-2 py-1'>{totalBaseStats}</strong>
+    </div>
+  )
+}
+
+function StatBar({ name, value }: { name: string; value: number }) {
+  const MAX_STAT = 255
+
+  function progressValuePercentage() {
+    return Math.round((value / MAX_STAT) * 100)
+  }
+
+  return (
+    <div className='relative flex h-8 w-full items-center justify-between'>
+      <p className='absolute left-3 z-10 capitalize'>{name}</p>
+      <Progress value={progressValuePercentage()} max={MAX_STAT} className='absolute h-8 w-full rounded' />
+      <p className='absolute right-3 z-10 capitalize'>{value}</p>
+    </div>
   )
 }
 
