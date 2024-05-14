@@ -3,15 +3,20 @@
 import PokemonImage from '@/components/pokemon-image'
 import { Button } from '@/components/ui/button'
 import usePokemonEvolution from '@/hooks/use-pokemon-evolution'
+import { getImageUrl } from '@/utils/helpers'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { useParams, usePathname } from 'next/navigation'
 
 export default function PokemonEvolutions() {
   const evolutions = usePokemonEvolution()
   const params = useParams()
+  const pathname = usePathname()
 
-  if (evolutions.status === 'pending') return <div>Loading...</div>
-  if (evolutions.status === 'error') return <div>Error: {evolutions.error.message}</div>
+  const [, id] = pathname.split('/')
+
+  if (id === '') return null
+
+  if (evolutions.status === 'pending' || evolutions.isLoading) return <div>Loading...</div>
 
   const evolutionChain = evolutions.data?.chain
 
@@ -31,11 +36,11 @@ export default function PokemonEvolutions() {
   }
 
   return (
-    <section className='w-full max-w-xl p-2'>
+    <section className='w-full max-w-xl'>
       <div className='flex justify-evenly gap-2'>
         {getEvolutionSpecies().map((pokemon) => {
-          const pokemonId = pokemon.url.split('/').at(-2)
-          const url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`
+          const pokemonId = pokemon.url.split('/').at(-2) as string
+          const url = getImageUrl(pokemonId)
 
           const isSelected = params.pokemonId === pokemon.name
 

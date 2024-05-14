@@ -3,6 +3,7 @@
 import PokemonCard from '@/components/pokemon-card'
 import usePokemonList from '@/hooks/use-pokemon-list'
 import useSearch from '@/hooks/use-search'
+import { getImageUrl } from '@/utils/helpers'
 import Link from 'next/link'
 
 export default function PokemonGrid() {
@@ -14,15 +15,15 @@ export default function PokemonGrid() {
   if (filteredList.length === 0) return <div>Empty Pokemon List</div>
 
   return (
-    <ul className='grid grid-cols-[repeat(auto-fill,minmax(200px,300px))] place-content-center gap-5'>
+    <ul className='grid grid-cols-2 place-content-around gap-5 sm:grid-cols-3 xl:grid-cols-4'>
       {filteredList.map((pokemon) => {
         const pokemonId = pokemon.url.split('/').at(-2) as string
-        const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`
+        const url = getImageUrl(pokemonId)
 
         return (
           <li key={pokemon.name}>
             <Link href={`/${pokemon.name}`} className='group'>
-              <PokemonCard name={pokemon.name} url={imageUrl} number={pokemonId}/>
+              <PokemonCard name={pokemon.name} url={url} number={pokemonId} />
             </Link>
           </li>
         )
