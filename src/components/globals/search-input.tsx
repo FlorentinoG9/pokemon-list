@@ -34,12 +34,12 @@ function Search() {
   if (pathname.split('/')[1] !== '') return null
 
   return (
-    <div className='relative ml-auto max-w-xs flex-1'>
+    <div className='relative w-full max-w-sm flex-1'>
       <SearchIcon className='absolute left-2.5 top-3 size-4 text-muted-foreground' />
       <Input
         type='search'
         placeholder='pikachu, charizard, mew, ...'
-        className='w-full rounded bg-background pl-8 md:w-[200px] lg:w-[320px]'
+        className='w-full rounded bg-background pl-8'
         autoComplete='off'
         value={search}
         onChange={(e) => handleSearchChange(e)}
