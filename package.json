@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e --electron\"",
+    "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\""
   },
   "dependencies": {
     "@radix-ui/react-aspect-ratio": "^1.0.3",
@@ -17,6 +19,7 @@
     "@tanstack/react-query-devtools": "^5.36.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "cypress": "^13.9.0",
     "immer": "^10.1.1",
     "jotai": "^2.8.0",
     "lucide-react": "^0.378.0",
@@ -42,6 +45,7 @@
     "postcss": "^8.4.38",
     "prettier": "3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
+    "start-server-and-test": "^2.0.3",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5"
   }

@@ -15,7 +15,7 @@ export default function PokemonGrid() {
   if (filteredList.length === 0) return <div>Empty Pokemon List</div>
 
   return (
-    <ul className='grid grid-cols-2 place-content-around gap-5 sm:grid-cols-3 xl:grid-cols-4'>
+    <ul className='grid grid-cols-2 place-content-around gap-5 sm:grid-cols-3 xl:grid-cols-4' data-testid='pokemon-list'>
       {filteredList.map((pokemon) => {
         const pokemonId = pokemon.url.split('/').at(-2) as string
         const url = getImageUrl(pokemonId)
