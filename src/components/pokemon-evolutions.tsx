@@ -36,7 +36,7 @@ export default function PokemonEvolutions() {
   }
 
   return (
-    <section className='w-full max-w-xl'>
+    <section className='w-full max-w-xl' data-testid='pokemon-evolutions'>
       <div className='flex justify-evenly gap-2'>
         {getEvolutionSpecies().map((pokemon) => (
           <PokemonEvolution key={pokemon.name} pokemon={pokemon} />

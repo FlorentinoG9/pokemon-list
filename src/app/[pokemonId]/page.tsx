@@ -1,8 +1,15 @@
 import PokemonDetails from '@/components/pokemon-details'
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
+import { Metadata } from 'next'
 
 interface PokemonProps {
   params: { pokemonId: string }
+}
+
+export async function generateMetadata({ params }: PokemonProps): Promise<Metadata> {
+  return {
+    title: `Pokedex | ${params.pokemonId}`,
+  }
 }
 
 export default async function Pokemon({ params: { pokemonId } }: Readonly<PokemonProps>) {

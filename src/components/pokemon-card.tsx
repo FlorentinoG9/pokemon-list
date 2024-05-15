@@ -22,9 +22,7 @@ export default function PokemonCard(props: Readonly<PokemonCardProps>) {
       )}
     >
       <CardHeader className='flex flex-row items-center justify-between gap-3 bg-muted'>
-        <CardTitle className='truncate text-center text-lg capitalize md:text-3xl' data-testid='pokemon-name'>
-          {props.name}
-        </CardTitle>
+        <CardTitle className='truncate text-center text-lg capitalize md:text-3xl' data-testid='pokemon-name'>{props.name}</CardTitle>
         <PokemonNumber number={props?.number || 0} />
       </CardHeader>
 

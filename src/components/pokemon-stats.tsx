@@ -13,7 +13,7 @@ export default function PokemonStats() {
   if (id === '') return null
 
   return (
-    <Tabs defaultValue='stats' className='w-full' data-testid='pokemon-stats'>
+    <Tabs defaultValue='stats' className='w-full' data-testid='pokemon-details'>
       <TabsList className='w-full *:w-full'>
         <TabsTrigger value='base'>Base</TabsTrigger>
         <TabsTrigger value='stats'>Stats</TabsTrigger>
@@ -55,7 +55,7 @@ function Stats() {
   const pokemon = usePokemonId()
 
   return (
-    <TabsContent value='stats'>
+    <TabsContent value='stats' data-testid='pokemon-stats'>
       <ul className='rounded border'>
         {pokemon.data?.stats.map((stat) => (
           <li key={stat.stat.name} className='flex justify-between p-2'>
@@ -89,7 +89,7 @@ function StatBar({ name, value }: { name: string; value: number }) {
   }
 
   return (
-    <div className='relative flex h-8 w-full items-center justify-between'>
+    <div className='relative flex h-8 w-full items-center justify-between' data-testid='stat-bar'>
       <p className='absolute left-3 z-10 capitalize'>{name}</p>
       <Progress value={progressValuePercentage()} max={MAX_STAT} className='absolute h-8 w-full rounded' />
       <p className='absolute right-3 z-10 capitalize'>{value}</p>
