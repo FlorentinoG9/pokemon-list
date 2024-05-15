@@ -15,13 +15,16 @@ interface PokemonCardProps {
 export default function PokemonCard(props: Readonly<PokemonCardProps>) {
   return (
     <Card
+      data-testid='pokemon-card'
       className={cn(
         'shadow-md transition-colors duration-300 group-hover:bg-muted group-hover:shadow-xl group-hover:ring-2',
         props.className
       )}
     >
       <CardHeader className='flex flex-row items-center justify-between gap-3 bg-muted'>
-        <CardTitle className='truncate text-center text-lg capitalize md:text-3xl'>{props.name}</CardTitle>
+        <CardTitle className='truncate text-center text-lg capitalize md:text-3xl' data-testid='pokemon-name'>
+          {props.name}
+        </CardTitle>
         <PokemonNumber number={props?.number || 0} />
       </CardHeader>
 

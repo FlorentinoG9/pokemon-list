@@ -13,7 +13,7 @@ export default function PokemonStats() {
   if (id === '') return null
 
   return (
-    <Tabs defaultValue='stats' className='w-full'>
+    <Tabs defaultValue='stats' className='w-full' data-testid='pokemon-stats'>
       <TabsList className='w-full *:w-full'>
         <TabsTrigger value='base'>Base</TabsTrigger>
         <TabsTrigger value='stats'>Stats</TabsTrigger>

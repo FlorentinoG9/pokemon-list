@@ -6,7 +6,7 @@ jobs:
   cypress-run:
     runs-on: ubuntu-22.04
     steps:
-      - name: ⎔ Setup pnpm
+      - name: setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 9.1.0

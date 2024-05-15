@@ -21,7 +21,7 @@ export default function PokemonGrid() {
         const url = getImageUrl(pokemonId)
 
         return (
-          <li key={pokemon.name}>
+          <li key={pokemon.name} >
             <Link href={`/${pokemon.name}`} className='group'>
               <PokemonCard name={pokemon.name} url={url} number={pokemonId} />
             </Link>
