@@ -37,6 +37,7 @@ function Search() {
     <div className='relative w-full max-w-sm flex-1'>
       <SearchIcon className='absolute left-2.5 top-3 size-4 text-muted-foreground' />
       <Input
+        data-testid='search-input'
         type='search'
         placeholder='pikachu, charizard, mew, ...'
         className='w-full rounded bg-background pl-8'
