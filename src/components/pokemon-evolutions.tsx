@@ -16,7 +16,7 @@ export default function PokemonEvolutions() {
 
   if (id === '') return null
 
-  if (evolutions.status === 'pending' || evolutions.isLoading) return <div>Loading...</div>
+  if (evolutions.isPending) return <div>Loading...</div>
 
   const evolutionChain = evolutions.data?.chain
 

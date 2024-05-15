@@ -27,7 +27,9 @@ export default function usePokemonEvolution() {
   })
 }
 
-async function fetchSpecies(pokemonId: string): Promise<[Error?, Species?]> {
+async function fetchSpecies(pokemonId: string | undefined): Promise<[Error?, Species?]> {
+  if (!pokemonId) return [new Error('No Pokemon ID'), undefined]
+
   try {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`)
     const data = await response.json()
